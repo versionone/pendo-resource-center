@@ -1,0 +1,172 @@
+.insidebox{
+    color: #244451;
+    margin: 0px 0px 5px;
+    position: relative;
+    float: none;
+    vertical-align: initial;
+    display: block;
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0px;
+    text-transform: none;
+    padding: 10px 20px;
+    border-width: 1px 0px 0px;
+    border-style: solid;
+    border-color: #cbcbcb;
+    list-style-position: inherit;
+    height: 340px;
+    font: inherit;
+}
+.article-title {
+    margin: 0px;
+    position: relative;
+    float: none;
+    vertical-align: initial;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 0px;
+    float: none;
+    vertical-align: initial;
+    padding: 5px 0px;
+    list-style-type: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+.article-title:hover{
+    text-decoration:underline;
+}
+#backToResultsContainer {
+    cursor: pointer;
+    color: #009ae0;
+    font-size: 14px;
+    padding-bottom: 10px;
+    padding-top:10px;
+}
+#backToResults:hover {
+    text-decoration: underline;
+}
+#articleContent {
+    background-color: #eef1f4;
+    border-radius: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+p {
+    padding: 0px 10px 10px 10px;
+    font-size: 14px;
+    line-height: 1.2;
+}
+.mt-page-summary {
+    padding: 0px 10px 10px 10px;
+    font-size: 14px;
+}
+a {
+    color: #009ae0;
+}
+h2 {
+    padding: 0px 10px 10px 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+h3 {
+    padding: 0px 10px 10px 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+h4 {
+    padding: 0px 10px 10px 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+img {
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+}
+video {
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+}
+.mt-video-widget {
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+}
+iframe {
+    max-width:100%;
+    height: auto;
+    object-fit: contain;
+}
+.hidden {
+    display: none;
+}
+.mt-category-container {
+    display:none;
+}
+#mt-guide-tabs {
+    display:none;
+}
+.previous_version {
+    display:none;
+}
+.label {
+    color:#999999;
+    font-size:12px;
+    font-weight:800;
+    padding-top: 20px;
+    border-bottom:solid;
+    border-width: 1px;
+    border-color:#999999;
+    text-transform: uppercase;
+}
+input {
+    border-radius: 16px;
+    border-style: solid;
+    border-color: #61666e;
+    width: 100%;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 5px;
+    border-width: 1px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;    
+    box-sizing: border-box;
+    color: #244451;
+    background-color: transparent;
+    
+}
+#articleTitles{
+    padding-top:10px;
+}
+::placeholder {
+    color:#9fc6d5;
+}
+a[href="#Overview"] {
+    display:none;
+}
+a[href="#Steps"] {
+    display:none;
+}
+ol li a[href*="#"] {
+    display: none;
+}
+#viewInCommunity {
+    float: right;
+}
+table {
+    display: block;
+    table-layout: fixed;
+    width: 100%;
+    padding-bottom:5px;
+    height: auto
+}
+ol {
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+ol li {
+    padding-bottom: 5px;
+}
