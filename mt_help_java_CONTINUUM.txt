@@ -1,0 +1,94 @@
+$('#backToResults').click(function() {
+    $('#articleContentContainer').addClass('hidden')
+    $('#articleTitles').removeClass('hidden')
+    $('.labelPendo').removeClass('hidden')
+    $('#articleContent').children().remove();
+    $('#viewInCommunity').remove();
+})
+//var helpParams = $('.help.rich-menu-item').attr('href').split('&');
+//var cidParam = helpParams[helpParams.length - 1];
+//var cid = cidParam.substring(4, cidParam.length)
+var search = function(e) {
+    var query = e.currentTarget.value;
+    if (_.isEmpty(query)) {
+        $('#backToResults').trigger('click');
+        $('#articleTitles').children('li.article-title').remove()
+        //$('.labelPendo').removeClass('hidden');
+        addSuggestedArticles();
+        $('#articleContainer').removeClass('hidden');
+        $('#noResults').addClass('hidden');
+    }
+    if (query.length < 3) return;
+    $('#backToResults').trigger('click');
+    $('#articleTitles').children('li.article-title').remove()
+    $('.labelPendo').removeClass('hidden');
+    fetch('https://community.versionone.com/@api/deki/site/search?q=' + query + '&limit=10&verbose=false&dream.out.format=json', {
+        headers: {
+            'X-Deki-Token': '4a21a181eda6591680102ba473afd56f0f23761d5a77e8abc0c6c8c12676d79d',
+        }
+    })
+    .then(function (response) {
+        response.json().then(function (json) {
+            var pages = json.page;
+            if (_.isEmpty(pages)) {
+                $('#articleContainer').addClass('hidden');
+                $('#noResults').removeClass('hidden');
+            } else {
+                pages.forEach(function(elm) {
+                    $('#articleTitles').append('<li class=\"article-title\" data-id=\"' + elm['@id'] + '\">' + elm.title + '</li>');
+                })
+                $('.article-title').click(function(e) {
+                    var pageId = $(e.currentTarget).attr('data-id');
+                    getPageContent(pageId);
+                    $('#articleTitles').addClass('hidden')
+                    $('#articleContentContainer').removeClass('hidden');
+                    $('.labelPendo').addClass('hidden');
+                })
+                $('#articleContainer').removeClass('hidden');
+                $('#noResults').addClass('hidden');
+            }
+        });
+    });
+}
+$('#search').keyup(_.debounce(search, 200))
+var getPageContent = function(pageId) {
+    $('#backToResultsContainer').append('<a id=\"viewInCommunity\" href=\"https://community.versionone.com/@go/page/' + pageId + '\" target=\"_blank\">View in Community</a>');
+    fetch('https://community.versionone.com/@api/deki/pages/' + pageId + '/contents', {
+        headers: {
+            'X-Deki-Token': '4a21a181eda6591680102ba473afd56f0f23761d5a77e8abc0c6c8c12676d79d',
+        }
+    })
+        .then(function (response) {
+        response.text().then(function (textValue) {
+            var goodText = textValue.replace('&lt;em&gt;No headers&lt;/em&gt;', '')
+            var mtContent = $($.parseHTML(goodText)[0].innerText)
+            var content = $('<div></div>').append(mtContent)
+            content.find('a').filter(function(link) { return link.hostname != window.location.hostname; }) .attr('target', '_blank');
+            $('#articleContent').append(content);
+        });
+    });
+    
+}
+//var addSuggestedArticles = function() {
+ //   var title = cid.replace(/([A-Z])/g, ' $1')
+  //  $('#articleTitles').append('<li class=\"article-title\" data-id=\"' + cid + '\">' + title + '</li>')
+ //   $('.article-title').click(function(e) {
+ //   var $elem = $(e.currentTarget);
+ //   var id = $elem.attr('data-id');
+ //   $('#articleTitles').addClass('hidden')
+ //   $('#articleContentContainer').removeClass('hidden');
+  //  $('.labelPendo').addClass('hidden');
+  //  fetch('https://community.versionone.com/@api/deki/contextmaps/en-us/' + cid + '?dream.out.format=json', {
+  //          headers: {
+  //              'X-Deki-Token': '4a21a181eda6591680102ba473afd56f0f23761d5a77e8abc0c6c8c12676d79d',
+  //          }
+  //      })
+  //      .then(function (response) {
+   //         response.json().then(function (json) {
+   //             var pageId = json.pageid
+    //          getPageContent(pageId)
+   //         })
+  //      })
+ //   })
+//};
+addSuggestedArticles();
