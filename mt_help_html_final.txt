@@ -1,0 +1,16 @@
+<div class="insidebox">
+    <input id="search" placeholder="Search" />
+    <div class="label">Suggested Articles</div>
+    <div id="articleContainer">
+        <ul id="articleTitles"></ul>
+        <div id="articleContentContainer" class="hidden">
+            <div id="backToResultsContainer">
+                <span id="backToResults">Back to Results</span>
+            </div>
+            <div id="articleContent"></div>
+        </div>
+    </div>
+    <div id="noResults" class="hidden">
+        No results found
+    </div>
+</div>
